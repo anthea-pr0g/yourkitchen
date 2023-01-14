@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<style> 
+.boxed {
+    border: 3px solid green ;
+    border-style:dashed;
+ 
+}
+ 
+</style>
+<body>
+    <p><input type="button" value="Back to Recipes" onclick="to_recipe()"></p>
+    <script>function to_recipe() {
+        location.href = "/recipes"
+    }    
+    </script>
+    <form action="{{ url_for('form')}}" method="post">
+        <p> Food Name:</p>
+        <p><input type="text" name="food"></p>
+        <p><input type="submit"></p>
+    
+    </form>
+
+<div class="boxed">
+ <center>
+<label>
+<p> &nbsp</p>
+    <p> Only .jpg or .jpeg images allowed </p>
+     <input type="file"  accept="image/jpg, image/jpeg" />
+    <p> &nbsp</p>
+   </label>
+   </center>
+  </div>
+
+  <form action="{{ url_for('form')}}" method="post">
+    <p> Enter Ingredients:</p>
+    
+ 
+    <p><input type="text" height="200px" font-size="14pt" placeholder="1 oil, &#10; 2 parsley, &#13;
+    3 butter" name="food"></p>
+    <p><input type="submit"></p>
+
+</form>
+
+</body>
+</html>

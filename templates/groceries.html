@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+.w3-bar-block .w3-bar-item {padding:20px}
+</style>
+</head>
+<body>
+
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s3">
+      <a href="/" class="w3-button w3-block w3-black">HOME</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="/groceries" class="w3-button w3-block w3-black">TO BUY</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="/recipes" class="w3-button w3-block w3-black">RECIPES</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="/leftovers" class="w3-button w3-block w3-black">LEFTOVERS</a>
+    </div>
+  </div>
+</div>
+
+ 
+ 
+     
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+
+ 
+  
+<h3> To Buy </h3>
+
+
+
+
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')" >Grocery List</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')" id="defaultOpen">Existing Items</button>
+  
+</div>
+
+<div id="London" class="tabcontent">
+  <h3>Grocery List</h3>
+</div>
+
+<div id="Paris" class="tabcontent">
+  <h3>Existing items</h3>
+  <div id="Eat" class="w3-container menu w3-padding-48 w3-card">
+    {% for food in existing_food %}
+    <h5>{{ food }}</h5>
+    {% endfor %}
+  </div>
+  <p> <form action="{{ url_for('groceries')}}" method="post">
+    <p> Enter quantity:</p>
+    <p><input type="number" name="quantity"></p>
+    <p> Enter Food Item:</p>
+    <p><input type="text" name="ingred_name"></p>
+    <p><input type="submit"></p>
+
+</form> </p> 
+</div>
+
+ 
+
+<script>
+
+ 
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+ 
+
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+}
+document.getElementById("myLink").click();
+
+</script>
+   
+</body>
+</html> 
